@@ -1,15 +1,17 @@
 from flask import Flask, request, render_template, send_from_directory
+from main_bp.main_view import main_blueprint
 # from functions import ...
 
 POST_PATH = "posts.json"
 UPLOAD_FOLDER = "uploads/images"
 
 app = Flask(__name__)
+app.register_blueprint(main_blueprint)
 
 
-@app.route("/")
-def page_index():
-    pass
+# @app.route("/")
+# def page_index():
+#     pass
 
 
 @app.route("/list")
