@@ -1,6 +1,6 @@
 import json
 
+POST_PATH = "posts.json"
 def load_json():
-    with open('posts.json', 'r', encoding='utf8') as fp:
-
-    return
+    with open(POST_PATH, 'r', encoding='UTF-8') as fp:
+        return json.load(fp)
