@@ -1,10 +1,10 @@
-from flask import Flask
+import logging
+from flask import Flask, send_from_directory
 
 from loader_bp.loader_view import loader_blueprint
 from main_bp.main_view import main_blueprint
 
-UPLOAD_FOLDER = "uploads/images"
-
+logging.basicConfig(level=logging.INFO)
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 1 * 1024 * 1024
 
@@ -14,7 +14,7 @@ app.register_blueprint(loader_blueprint)
 
 @app.errorhandler(413)
 def error_413_page(e):
-    return "<h1> The file size is large. </h1>" , 413
+    return "<h1> The file size is large. </h1>", 413
 
 
 # @app.route("/")
@@ -37,9 +37,10 @@ def error_413_page(e):
 #     pass
 #
 #
-# @app.route("/uploads/<path:path>")
-# def static_dir(path):
-#     return send_from_directory("uploads", path)
+@app.route("/uploads/images/<path:path>")
+def static_dir(path):
+    return send_from_directory("uploads/images")
+
 
 app.debug = True
 app.run()
