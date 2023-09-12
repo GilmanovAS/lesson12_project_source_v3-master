@@ -1,15 +1,21 @@
-from flask import Flask, request, render_template, send_from_directory
-from main_bp.main_view import main_blueprint
+from flask import Flask
+
 from loader_bp.loader_view import loader_blueprint
-
-from functions import load_json
-
+from main_bp.main_view import main_blueprint
 
 UPLOAD_FOLDER = "uploads/images"
 
 app = Flask(__name__)
+app.config['MAX_CONTENT_LENGTH'] = 1 * 1024 * 1024
+
 app.register_blueprint(main_blueprint)
 app.register_blueprint(loader_blueprint)
+
+
+@app.errorhandler(413)
+def error_413_page(e):
+    return "<h1> The file size is large. </h1>" , 413
+
 
 # @app.route("/")
 # def page_index():
