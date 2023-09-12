@@ -42,5 +42,9 @@
     {
         "pic": "/uploads/images/cron.txt",
         "content": "test"
+    },
+    {
+        "pic": "/uploads/images/опоры.png",
+        "content": "test"
     }
 ]

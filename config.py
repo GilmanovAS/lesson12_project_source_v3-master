@@ -1,6 +1,7 @@
 import logging
-log = logging.basicConfig(encoding='UTF-8', level=logging.DEBUG)
 
+APP_DEBUG = False
+LOG_LEVEL = logging.INFO
 UPLOAD_FOLDER = "uploads/images"
 POST_PATH = "posts.json"
 MAX_CONTENT_LENGTH = 1 * 1024 * 1024
