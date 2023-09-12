@@ -1,3 +1,5 @@
+import logging
+
 from flask import render_template, Blueprint, request
 
 from functions import load_json
@@ -12,6 +14,8 @@ def main_page():
 
 @main_blueprint.route('/search/')
 def search_page():
+    logging.info('search info')
+    logging.debug('search debug')
     search_str = request.values.get('s')
     posts = [x for x in load_json() if search_str.lower() in x['content'].lower()]
     return render_template('post_list.html', search_str=search_str, posts=posts)

@@ -1,6 +1,5 @@
 import json
-
-POST_PATH = "posts.json"
+from config import POST_PATH
 
 
 def load_json():
