@@ -25,4 +25,4 @@ def static_dir(path):
     return send_from_directory("uploads/images", path)
 
 
-app.run(debug=APP_DEBUG, host='127.0.0.1', port='5001')
+app.run(debug=APP_DEBUG, host='127.0.0.1', port='5000')
