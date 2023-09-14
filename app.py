@@ -1,14 +1,16 @@
 import logging
+import os
+from pprint import pprint
 
 from flask import Flask, send_from_directory
 
-from config import MAX_CONTENT_LENGTH, LOG_LEVEL, APP_DEBUG
+# from config import MAX_CONTENT_LENGTH, LOG_LEVEL, APP_DEBUG
 from loader_bp.loader_view import loader_blueprint
 from main_bp.main_view import main_blueprint
 
-logging.basicConfig(encoding='UTF-8', level=LOG_LEVEL)
 app = Flask(__name__)
-app.config['MAX_CONTENT_LENGTH'] = MAX_CONTENT_LENGTH
+app.config.from_pyfile('config.py')
+logging.basicConfig(encoding='UTF-8', level=app.config.get('LOG_LEVEL'))
 logging.info('Registration BP info')
 logging.debug('Registration BP debug')
 app.register_blueprint(main_blueprint)
@@ -24,5 +26,6 @@ def error_413_page(e):
 def static_dir(path):
     return send_from_directory("uploads/images", path)
 
+# pprint(os.environ, indent=4)
 
-app.run(debug=APP_DEBUG, host='127.0.0.1', port='5000')
+app.run(app.config.get('HOST'), app.config.get('PORT'))
